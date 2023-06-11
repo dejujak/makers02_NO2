@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
 
     [Header("# Game Control")]
     public float gameTime;
-    public float maxGameTime = 2 * 10f;
+    public float maxGameTime = 99999999f;
 
     [Header("# Player Info")]
     public int health;
@@ -21,6 +21,20 @@ public class GameManager : MonoBehaviour
     [Header("# Game Object")]
     public PoolManager pool;
     public Player player;
+
+    private float gameTimeForStage = 0;
+    private int stage = 0;
+    private bool pauseProgressBeforeEnemyAllDie = false;
+    public int GetStage() { return stage; }
+    public void SetPauseProgressBeforeEnemyAllDie()
+    {
+        pauseProgressBeforeEnemyAllDie = true;
+    }
+
+    public bool GetPauseProgressBeforeEnemyAllDie()
+    {
+        return pauseProgressBeforeEnemyAllDie;
+    }
 
     private void Awake()
     {
@@ -40,6 +54,26 @@ public class GameManager : MonoBehaviour
         {
             gameTime = maxGameTime;
         }
+
+        if (GetPauseProgressBeforeEnemyAllDie() == false )
+        {
+            gameTimeForStage += Time.deltaTime;
+            if (gameTimeForStage > 10.0f)
+            {
+                stage += 1;
+                gameTimeForStage = 0.0f;
+            }
+        }
+        else
+        {
+            if ( pool.CheckAllDie(0) == true )
+            {
+                pauseProgressBeforeEnemyAllDie = false;
+                stage += 1;
+            }
+            //if ( pool.poo)
+        }
+        
     }
 
     public void GetExp()

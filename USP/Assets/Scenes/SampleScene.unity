@@ -389,11 +389,66 @@ MonoBehaviour:
   - spawnTime: 0.7
     spriteType: 0
     health: 10
-    speed: 1.5
+    speed: 2
+    boss: 0
+    randomDash: 0
+    attack: 0
   - spawnTime: 0.7
     spriteType: 1
     health: 15
     speed: 2.4
+    boss: 0
+    randomDash: 0
+    attack: 0
+  - spawnTime: 0.7
+    spriteType: 2
+    health: 50
+    speed: 1.4
+    boss: 1
+    randomDash: 0
+    attack: 0
+  - spawnTime: 0.7
+    spriteType: 0
+    health: 20
+    speed: 3.4
+    boss: 0
+    randomDash: 0
+    attack: 0
+  - spawnTime: 0.7
+    spriteType: 1
+    health: 20
+    speed: 3.4
+    boss: 0
+    randomDash: 0
+    attack: 0
+  - spawnTime: 0.7
+    spriteType: 2
+    health: 20
+    speed: 3.4
+    boss: 1
+    randomDash: 1
+    attack: 0
+  - spawnTime: 0.7
+    spriteType: 0
+    health: 20
+    speed: 3.4
+    boss: 0
+    randomDash: 0
+    attack: 0
+  - spawnTime: 0.7
+    spriteType: 1
+    health: 20
+    speed: 3.4
+    boss: 0
+    randomDash: 0
+    attack: 0
+  - spawnTime: 0.7
+    spriteType: 2
+    health: 50
+    speed: 1.4
+    boss: 1
+    randomDash: 0
+    attack: 0
 --- !u!1 &117160637
 GameObject:
   m_ObjectHideFlags: 0
