@@ -5,6 +5,8 @@ using UnityEngine;
 public class Reposition : MonoBehaviour
 {
     Collider2D coll;
+    public GameObject Oxygen;
+    float OxygenPosition;
 
     private void Awake()
     {
@@ -31,10 +33,15 @@ public class Reposition : MonoBehaviour
                 if (diffX > diffY)
                 {
                     transform.Translate(Vector3.right * dirX * 40);
+                    Vector3 OxygenPosition = myPos + Vector3.right * dirX * 20;
+                    Instantiate(Oxygen, OxygenPosition, Quaternion.identity); //魂家青己 积己 by JEA
+
                 }
                 else if(diffX<diffY)
                 {
                     transform.Translate(Vector3.up * dirY * 40);
+                    Vector3 OxygenPosition = myPos + Vector3.up * dirY * 20;
+                    Instantiate(Oxygen, OxygenPosition, Quaternion.identity); //魂家青己 积己 by JEA  
                 }
                 break;
             case "Enemy":

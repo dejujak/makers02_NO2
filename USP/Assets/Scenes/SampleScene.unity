@@ -1481,6 +1481,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3d68e00fe71d1142a7f51c346dbb20f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Oxygen: {fileID: 1392482318214881666, guid: cf4403be0b3b42942ba847d10d3994c1, type: 3}
 --- !u!61 &469907925
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1800,7 +1801,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 8.055555
+  orthographic size: 10.722222
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -3539,6 +3540,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3d68e00fe71d1142a7f51c346dbb20f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Oxygen: {fileID: 1392482318214881666, guid: cf4403be0b3b42942ba847d10d3994c1, type: 3}
 --- !u!61 &1571359965
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3694,6 +3696,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3d68e00fe71d1142a7f51c346dbb20f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Oxygen: {fileID: 1392482318214881666, guid: cf4403be0b3b42942ba847d10d3994c1, type: 3}
 --- !u!61 &1589146301
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4410,6 +4413,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3d68e00fe71d1142a7f51c346dbb20f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Oxygen: {fileID: 1392482318214881666, guid: cf4403be0b3b42942ba847d10d3994c1, type: 3}
 --- !u!61 &1881813835
 BoxCollider2D:
   m_ObjectHideFlags: 0
