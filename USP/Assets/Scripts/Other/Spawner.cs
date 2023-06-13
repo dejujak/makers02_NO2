@@ -6,7 +6,6 @@ public class Spawner : MonoBehaviour
 {
     public Transform[] spawnPoint;
     public SpawnData[] spawnData;
-
     float timer;
 
     private void Awake()
@@ -30,6 +29,7 @@ public class Spawner : MonoBehaviour
                 Debug.Log("stage : " + stage);
                 if ( spawnData[stage].boss )
                 {
+                    Debug.Log("SetPauseProgressBeforeEnemyAllDie");
                     GameManager.instance.SetPauseProgressBeforeEnemyAllDie();
                 }
                 timer = 0f;
@@ -44,9 +44,16 @@ public class Spawner : MonoBehaviour
         GameObject enemy=GameManager.instance.pool.Get(0);
         enemy.transform.position = spawnPoint[Random.Range(1, spawnPoint.Length)].position;
         enemy.GetComponent<Enemy>().Init(spawnData[stage]);
+        enemy.transform.localScale = new Vector3(_spawnData.size, _spawnData.size, 1);
         if (_spawnData.randomDash )
         {
             enemy.GetComponent<Enemy>().SetRandomDash();
+
+        }
+
+        if(_spawnData.attack)
+        {
+            enemy.GetComponent<Enemy>().SetAttack();
         }
     }
 }
@@ -61,5 +68,6 @@ public class SpawnData
     public bool boss;
     public bool randomDash;
     public bool attack;
-    //public int size;
+    public float size = 1;
+
 }

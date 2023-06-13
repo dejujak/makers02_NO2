@@ -48,12 +48,17 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        gameTime += Time.deltaTime;
+        if ( stage <= 8 )
+            gameTime += Time.deltaTime;
 
+        /*
         if (gameTime > maxGameTime)
         {
             gameTime = maxGameTime;
         }
+
+        */
+   
 
         if (GetPauseProgressBeforeEnemyAllDie() == false )
         {
@@ -68,6 +73,7 @@ public class GameManager : MonoBehaviour
         {
             if ( pool.CheckAllDie(0) == true )
             {
+                Debug.Log("pauseProgressBeforeEnemyAllDie = false");
                 pauseProgressBeforeEnemyAllDie = false;
                 stage += 1;
             }

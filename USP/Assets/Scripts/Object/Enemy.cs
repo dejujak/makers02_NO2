@@ -14,7 +14,7 @@ public class Enemy : MonoBehaviour
     public bool CheckLive() { return isLive;  }
 
     bool isRandomDash = false;
-    //bool isAttack = false;
+    bool isAttack = false;
 
     private float fDurationTimeToDash = 1.0f;
     private float fRemainTimeToDash = 0;
@@ -23,6 +23,9 @@ public class Enemy : MonoBehaviour
     private Vector2 vecDash = new Vector2(0,0);
 
     public void SetRandomDash() { isRandomDash = true; }
+
+    public void SetAttack() { isAttack = true; }
+
 
     Rigidbody2D rigid;
     Collider2D coll;
@@ -58,6 +61,19 @@ public class Enemy : MonoBehaviour
                     isDashing = true;
                     vecDash = dirVec.normalized;
                     fRemainTimeToDash = fDurationTimeToDash;
+
+                    ////////////////////////////////////////////////
+                    //bullet
+                    /*
+                    Transform bullet;
+                    bullet = GameManager.instance.pool.Get(2).transform;
+                    
+                    bullet.localPosition = transform.localPosition;
+
+
+                    bullet.GetComponent<Bullet>().Init(0, -1, Vector3.zero);
+                    */
+                    ///////////////////////////////////////////////////////////////////////
                 }
             }
             else

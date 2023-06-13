@@ -24,7 +24,7 @@ public class PoolManager : MonoBehaviour
         {
             if (item.activeSelf)
             {
-                if ( item.GetComponent<Enemy>().CheckLive() == false)
+                if ( item.GetComponent<Enemy>().CheckLive() == true )
                 {
                     return false;
                 }

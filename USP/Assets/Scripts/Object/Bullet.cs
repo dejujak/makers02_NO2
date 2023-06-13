@@ -9,6 +9,8 @@ public class Bullet : MonoBehaviour
 
     Rigidbody2D rigid;
 
+    private bool toEnemy = true;
+
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -27,8 +29,16 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!collision.CompareTag("Enemy") || per == -1 || Weapon.instance.id == 4)
-            return;
+        if (toEnemy == true)
+        {
+            if (!collision.CompareTag("Enemy") || per == -1 || Weapon.instance.id == 4)
+                return;
+        }
+        else
+        {
+            if (!collision.CompareTag("Player") || per == -1 || Weapon.instance.id == 4)
+                return;
+        }
 
         per--;
 
