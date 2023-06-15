@@ -11,6 +11,13 @@ public class Weapon : MonoBehaviour
     public float damage;
     public int count;
     public float speed;
+    public float baseDamage;
+    public float baseRate;
+    public int baseCount;
+    public float baseScaleX;
+    public float baseScaleY;
+    public float basePositionX;
+    public float basePositionY;
 
     float timer;
     Player player;
@@ -22,9 +29,14 @@ public class Weapon : MonoBehaviour
     }
 
     void Update()
-    {
-            switch (id)
-            {
+    { 
+        if(id!= GameManager.instance.curWI)
+        {
+            gameObject.SetActive(false);
+        }
+
+        switch (id)
+        {
                 case 0:
                     transform.Rotate(Vector3.back * speed * Time.deltaTime);
                     break;
@@ -39,7 +51,26 @@ public class Weapon : MonoBehaviour
                         Fire();
                     }
                     break;
-            }
+        }
+
+        damage = baseDamage + (baseDamage * 0.5f) * GameManager.instance.attackLevel;
+        if (id == 1 || id == 2 || id == 3)
+        {
+            speed = baseRate - (baseRate * 0.1f) * GameManager.instance.rateLevel;
+            count = baseCount + (GameManager.instance.dotLevel);
+        }
+        else if (id == 4)
+        {
+            GameObject Laser = transform.Find("LaserBullet(Clone)").gameObject;
+            Laser.transform.localScale = new Vector3(baseScaleX + (0.2f * (GameManager.instance.rateLevel)*baseScaleX), baseScaleY + (0.3f * (GameManager.instance.rateLevel*baseScaleY)), Laser.transform.localScale.z);
+            
+        }
+        else if (id == 5)
+        {
+            GameObject Flame = transform.Find("FlameBullet(Clone)").gameObject;
+            Flame.transform.localScale = new Vector3(baseScaleX+(baseScaleX *0.4f* (GameManager.instance.rateLevel)), baseScaleY+(baseScaleY*0.3f* (GameManager.instance.rateLevel)), Flame.transform.localScale.z);
+
+        }
     }
 
     public void Init(ItemData data)
@@ -48,14 +79,22 @@ public class Weapon : MonoBehaviour
         name = "Weapon " + data.itemId;
         transform.parent = player.transform;
         transform.localPosition = Vector3.zero;
+        tag = "Weapon";
 
 
         //Property Set
         id = data.itemId;
         damage = data.baseDamage;
         count = data.baseCount;
+        baseDamage = data.baseDamage;
+        baseRate = data.baseRate;
+        baseScaleX = data.baseScaleX;
+        baseScaleY = data.baseScaleY;
+        basePositionX = data.basePositionX;
+        basePositionY=data.basePositionY;
+        baseCount = data.baseCount;
 
-        for(int index = 0; index < GameManager.instance.pool.prefabs.Length; index++)
+        for (int index = 0; index < GameManager.instance.pool.prefabs.Length; index++)
         {
             if(data.projectile== GameManager.instance.pool.prefabs[index])
             {
@@ -71,10 +110,10 @@ public class Weapon : MonoBehaviour
                 Batch();
                 break;
             case 1:
-                speed = 0.3f;
+                speed = 0.5f;
                 break;
             case 2:
-                speed = 0.1f;
+                speed = 0.3f;
                 break;
             case 3:
                 speed = 0.5f;
@@ -86,6 +125,11 @@ public class Weapon : MonoBehaviour
                 LaserFlame();
                 break;
         }
+
+        //Hand Set
+        Hand hand = player.hands[(int)data.itemType];
+        hand.spriter.sprite = data.hand;
+        hand.gameObject.SetActive(true);
 
         player.BroadcastMessage("ApplyGear",SendMessageOptions.DontRequireReceiver);
     }
@@ -196,11 +240,13 @@ public class Weapon : MonoBehaviour
 
         if (id == 4)
         {
-            bullet.Translate(bullet.up * 9f, Space.World);
+            bullet.Translate(bullet.up * 0.5f, Space.World);
+            //bullet.Translate(bullet.up * 2.25f, Space.World);
         }
         else if(id==5)
         {
-            bullet.Translate(bullet.up * 3f, Space.World);
+            bullet.Translate(bullet.up * 0.5f, Space.World);
+            //bullet.Translate(bullet.up * 1.5f, Space.World);
         }
 
         bullet.GetComponent<Bullet>().Init(damage, -1, Vector3.zero);

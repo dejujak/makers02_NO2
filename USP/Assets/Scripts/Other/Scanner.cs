@@ -9,6 +9,26 @@ public class Scanner : MonoBehaviour
     public RaycastHit2D[] targets;
     public Transform nearestTarget;
 
+    private void Update()
+    {
+        /*switch (Weapon.instance.id)
+        {
+            case 1:
+            case 3:
+                scanRange = 3;
+                break;
+            case 5:
+                scanRange = 3+0.5f*GameManager.instance.rateLevel;
+                break;
+            case 2:
+                scanRange = 6;
+                break;
+            case 4:
+                scanRange = 5+GameManager.instance.rateLevel;
+                break;
+        }*/
+    }
+
     private void FixedUpdate()
     {
         targets = Physics2D.CircleCastAll(transform.position, scanRange, Vector2.zero, 0, targetLayer);

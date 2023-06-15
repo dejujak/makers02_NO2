@@ -22,6 +22,11 @@ public class GameManager : MonoBehaviour
     public PoolManager pool;
     public Player player;
 
+    public int curWI;
+    public int attackLevel;
+    public int rateLevel;
+    public int dotLevel;
+
     private void Awake()
     {
         instance = this;
@@ -40,6 +45,14 @@ public class GameManager : MonoBehaviour
         {
             gameTime = maxGameTime;
         }
+
+        //if (curWI != 0)
+        //{
+        //    GameObject weapon = GameObject.Find("Weapon " + curWI);
+        //    if (weapon == null)
+        //        return;
+        //    weapon.gameObject.SetActive(true);
+        //}
     }
 
     public void GetExp()

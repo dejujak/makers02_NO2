@@ -10,20 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4fb4490bbbaa53a41981f713c4951137, type: 3}
-  m_Name: Item 2
+  m_Name: DotUp
   m_EditorClassIdentifier: 
-  itemType: 2
-  itemId: 7
-  itemName: "\uD14C\uD06C\uB2C8\uCEEC \uC7A5\uAC11"
+  itemType: 6
+  itemId: 6
+  itemName: "\uB3C4\uD2B8\uB370\uBBF8\uC9C0\uC99D\uAC00"
   itemDesc: 
-  itemIcon: {fileID: -201829820, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
+  itemIcon: {fileID: 927338625, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
   baseDamage: 0
+  baseRate: 0
+  baseScaleX: 0
+  baseScaleY: 0
   baseCount: 0
   damages:
-  - 0.1
-  - 0.2
-  - 0.35
-  - 0.5
-  - 0.75
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
   counts: 0000000000000000000000000000000000000000
   projectile: {fileID: 0}
+  hand: {fileID: 0}
