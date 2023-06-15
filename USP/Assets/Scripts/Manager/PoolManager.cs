@@ -18,6 +18,22 @@ public class PoolManager : MonoBehaviour
         }
     }
 
+    public bool CheckAllDie(int index)
+    {
+        foreach (GameObject item in pools[index])
+        {
+            if (item.activeSelf)
+            {
+                if ( item.GetComponent<Enemy>().CheckLive() == true )
+                {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
     public GameObject Get(int index)
     {
         GameObject select = null;

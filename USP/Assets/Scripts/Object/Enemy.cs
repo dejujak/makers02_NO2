@@ -11,6 +11,21 @@ public class Enemy : MonoBehaviour
     public Rigidbody2D target;
 
     bool isLive;
+    public bool CheckLive() { return isLive;  }
+
+    bool isRandomDash = false;
+    bool isAttack = false;
+
+    private float fDurationTimeToDash = 1.0f;
+    private float fRemainTimeToDash = 0;
+    private float fRangeToDash = 5;
+    private bool isDashing = false;
+    private Vector2 vecDash = new Vector2(0,0);
+
+    public void SetRandomDash() { isRandomDash = true; }
+
+    public void SetAttack() { isAttack = true; }
+
 
     Rigidbody2D rigid;
     Collider2D coll;
@@ -27,13 +42,59 @@ public class Enemy : MonoBehaviour
         wait = new WaitForFixedUpdate();
     }
 
+  
+
     void FixedUpdate()
     {
         if (!isLive||anim.GetCurrentAnimatorStateInfo(0).IsName("Hit"))
             return;
 
         Vector2 dirVec = target.position - rigid.position;
-        Vector2 nextVec = dirVec.normalized * speed * Time.fixedDeltaTime;
+        float finalSpeed = speed;
+
+        if ( isRandomDash == true )
+        {
+            if ( isDashing == false )
+            {
+                if (dirVec.magnitude < fRangeToDash )
+                {
+                    isDashing = true;
+                    vecDash = dirVec.normalized;
+                    fRemainTimeToDash = fDurationTimeToDash;
+
+                    ////////////////////////////////////////////////
+                    //bullet
+                    /*
+                    Transform bullet;
+                    bullet = GameManager.instance.pool.Get(2).transform;
+                    
+                    bullet.localPosition = transform.localPosition;
+
+
+                    bullet.GetComponent<Bullet>().Init(0, -1, Vector3.zero);
+                    */
+                    ///////////////////////////////////////////////////////////////////////
+                }
+            }
+            else
+            {
+                fRemainTimeToDash -= Time.fixedDeltaTime;
+                if (fRemainTimeToDash <= 0 )
+                {
+                    isDashing = false;
+                }
+                else
+                {
+                    dirVec = vecDash;
+                    finalSpeed *= Random.Range(2, 5.0f);
+                }
+                
+            }
+        }
+  
+       
+       
+        Vector2 nextVec = dirVec.normalized * finalSpeed * Time.fixedDeltaTime;
         rigid.MovePosition(rigid.position + nextVec);
         rigid.velocity = Vector2.zero;
     }

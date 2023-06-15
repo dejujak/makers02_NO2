@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
 
     [Header("# Game Control")]
     public float gameTime;
-    public float maxGameTime = 2 * 10f;
+    public float maxGameTime = 99999999f;
 
     [Header("# Player Info")]
     public int health;
@@ -22,11 +22,6 @@ public class GameManager : MonoBehaviour
     public PoolManager pool;
     public Player player;
 
-    public int curWI;
-    public int attackLevel;
-    public int rateLevel;
-    public int dotLevel;
-
     private void Awake()
     {
         instance = this;
@@ -39,20 +34,15 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        gameTime += Time.deltaTime;
+        if ( stage <= 8 )
+            gameTime += Time.deltaTime;
 
+        /*
         if (gameTime > maxGameTime)
         {
             gameTime = maxGameTime;
         }
 
-        //if (curWI != 0)
-        //{
-        //    GameObject weapon = GameObject.Find("Weapon " + curWI);
-        //    if (weapon == null)
-        //        return;
-        //    weapon.gameObject.SetActive(true);
-        //}
     }
 
     public void GetExp()
