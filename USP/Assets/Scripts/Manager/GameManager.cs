@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     [Header("# Game Control")]
     public float gameTime;
     public float maxGameTime = 2 * 10f;
+    public bool islive=false;
 
     [Header("# Player Info")]
     public int health;
@@ -27,9 +28,10 @@ public class GameManager : MonoBehaviour
         instance = this;
     }
 
-    private void Start()
+    public  void GameStart()
     {
         health = maxHealth;
+        islive = true;
     }
 
     private void Update()

@@ -26,7 +26,7 @@ public class Oxygen : MonoBehaviour
 
         if (OxygenNumber == 0)
         {
-            Destroy(OxygenCase);
+            Destroy(OxygenCase); 
         }
     }
 
