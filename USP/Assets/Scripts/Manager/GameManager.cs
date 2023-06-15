@@ -22,20 +22,6 @@ public class GameManager : MonoBehaviour
     public PoolManager pool;
     public Player player;
 
-    private float gameTimeForStage = 0;
-    private int stage = 0;
-    private bool pauseProgressBeforeEnemyAllDie = false;
-    public int GetStage() { return stage; }
-    public void SetPauseProgressBeforeEnemyAllDie()
-    {
-        pauseProgressBeforeEnemyAllDie = true;
-    }
-
-    public bool GetPauseProgressBeforeEnemyAllDie()
-    {
-        return pauseProgressBeforeEnemyAllDie;
-    }
-
     private void Awake()
     {
         instance = this;
@@ -57,29 +43,6 @@ public class GameManager : MonoBehaviour
             gameTime = maxGameTime;
         }
 
-        */
-   
-
-        if (GetPauseProgressBeforeEnemyAllDie() == false )
-        {
-            gameTimeForStage += Time.deltaTime;
-            if (gameTimeForStage > 10.0f)
-            {
-                stage += 1;
-                gameTimeForStage = 0.0f;
-            }
-        }
-        else
-        {
-            if ( pool.CheckAllDie(0) == true )
-            {
-                Debug.Log("pauseProgressBeforeEnemyAllDie = false");
-                pauseProgressBeforeEnemyAllDie = false;
-                stage += 1;
-            }
-            //if ( pool.poo)
-        }
-        
     }
 
     public void GetExp()

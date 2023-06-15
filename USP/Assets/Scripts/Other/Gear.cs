@@ -36,26 +36,30 @@ public class Gear : MonoBehaviour
             case ItemData.ItemType.Shoe:
                 SpeedUp();
                 break;
+            case ItemData.ItemType.DamageUp:
+                DamageUp();
+                break;
+            case ItemData.ItemType.DotUp:
+                DotUp();
+                break;
         }
     }
 
     void RateUp()
     {
-        Weapon[] weapons = transform.parent.GetComponentsInChildren<Weapon>();
-
-        foreach(Weapon weapon in weapons)
-        {
-            switch (weapon.id)
-            {
-                case 0:
-                    weapon.speed = 150 + (150 * rate);
-                    break;
-                default:
-                    weapon.speed = 0.5f * (1f - rate);
-                    break;
-            }
-        }
+            GameManager.instance.rateLevel++;
     }
+
+    void DamageUp()
+    {
+            GameManager.instance.attackLevel++;
+    }
+
+    void DotUp()
+    {
+        GameManager.instance.dotLevel++;
+    }
+
 
     void SpeedUp()
     {
